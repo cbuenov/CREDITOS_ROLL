@@ -2,7 +2,6 @@
 //NESTA VERSÃO O PARÂMETRO-BASE É A DURAÇÃO DA COMP. O CICLO É CALCULADO A PARTIR DELA.
 //NAS VERSÕES ANTERIORES O PARÂMETRO-BASE ERA O CLICO.
 
-
 //TEXTO FUNCOES A
 //Calcula o range de texto a ser lido.
 //Um ciclo é o tempo de entrar em quadro mais o tempo de sair de quadro.
