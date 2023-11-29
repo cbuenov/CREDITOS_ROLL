@@ -29,8 +29,6 @@ p[posTela-1]
 
 //== POSICAO Y -- LAYER NULL SCROLL A ========
 
-//NESTA VERSAO A ANIMACAO SÓ COMEÇA QUANDO A 1a TELA ESTÁ NA POSIÇÃO CORRETA
-
 h1 = thisComp.height
 h2 = -h1
 ciclo = thisComp.layer("NULL_VARIAVEIS").effect("ciclo")("Slider")  //em segundos
@@ -40,14 +38,12 @@ t2 = t1 + ciclo
 //A defasagem máxima é a metade de um ciclo, por isso dividi por 200
 k = thisComp.layer("NULL_CONTROLES").effect("ajuste_animacao_inicio(%)")("Slider")/200
 
-if(time < k*ciclo)
+if(time < ciclo)
 {
-	h1*(1 - thisComp.layer("NULL_CONTROLES").effect("ajuste_animacao_inicio(%)")("Slider")/100)
+	h1 = h1*(1 - thisComp.layer("NULL_CONTROLES").effect("ajuste_animacao_inicio(%)")("Slider")/100)
 }
-else
-{
-	linear(time, t1, t2, h1, h2)
-}
+
+linear(time, t1, t2, h1, h2)
 
 //===========================================================================================
 
@@ -59,16 +55,38 @@ thisComp.layer("NULL_SCROLL_A").transform.position[0]
 
 //== POSICAO Y LAYER NULL ==
 
-h = thisComp.height
+h1 = thisComp.height
+h2 = -h1
 ciclo = thisComp.layer("NULL_VARIAVEIS").effect("ciclo")("Slider")  //em segundos
 t1 = Math.floor((time-ciclo/2)/ciclo)*ciclo + ciclo/2
 t2 = t1 + ciclo
 
-if(time >ciclo/2)
+//A defasagem máxima é a metade de um ciclo, por isso dividi por 200
+k = thisComp.layer("NULL_CONTROLES").effect("ajuste_animacao_inicio(%)")("Slider")/200
+
+kc = (ciclo/2) * (1- thisComp.layer("NULL_CONTROLES").effect("ajuste_animacao_inicio(%)")("Slider")/100)
+
+if(k>0) 
 {
-	linear(time, t1, t2, h, -h)
+	if(time < ciclo)
+	{
+		h2 = 0
+		t1 = kc    //XXX IMPRECISO XXXXX
+		t2 = ciclo
+	}
+
+	linear(time, t1, t2, h1, h2)
 }
-else h
+else
+{
+	if(time >ciclo/2)
+	{
+		linear(time, t1, t2, h1, h2)
+	}
+	else h1 //fica parado até atingir meio ciclo
+}
+
+
 
 
 //==========================================

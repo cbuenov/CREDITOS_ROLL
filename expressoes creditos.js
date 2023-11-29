@@ -1,10 +1,9 @@
-//EXPRESSÕES PROJETO ROLL CRÉDITOS
 /*
+30/11/2023
+
+EXPRESSÕES PROJETO ROLL CRÉDITOS v1.1
 NESTA VERSÃO O PARÂMETRO-BASE É A DURAÇÃO DA COMP. O CICLO É CALCULADO A PARTIR DELA.
-NAS VERSÕES ANTERIORES O PARÂMETRO-BASE ERA O CLICO.
-
 O NÚMERO DE LINHAS POR TELA É CALCULADO A PARTIR DO TAMANHO DA MAIOR FONTE USADA
-
 */
 
 
@@ -53,6 +52,8 @@ else h
 
 //==========================================
 
+//LAYER FUNCOES A - POSITION Y
+thisComp.layer("FONTE_1").text.sourceText.style.leading/2
 
 //LAYER FUNCOES A - SOURCE TEXT
 //Calcula o range de texto a ser lido.
@@ -86,32 +87,31 @@ end = start + linhasPorTela - 1
 
 if(thisComp.layer("NULL_CONTROLES").effect("Exibir_linhas_numeradas").checkbox == 0)
 {
-	x = thisComp.layer("PREENCHER").text.sourceText.split("\r");
+	arrayLinhas = thisComp.layer("PREENCHER").text.sourceText.split("\r");
 }
 else
 {
-	x = thisComp.layer("LINHAS NUMERADAS").text.sourceText.split("\r");
+	arrayLinhas = thisComp.layer("LINHAS NUMERADAS").text.sourceText.split("\r");
 }
 
-if(start+linhasPorTela > x.length)
+if(start+linhasPorTela > arrayLinhas.length)
 {
-	end = x.length - 1;
+	end = arrayLinhas.length - 1;
 }
 
 resultado = "";
 
 for (i = start; i <= end; i++)
 {
-	if (x[i].charAt(0) != "*")
+	if (arrayLinhas[i].charAt(0) != "*")
 	{
 		resultado += "\r";
 	} 
 	else 
 	{
-		resultado += x[i].replace("*","")+"\r";
+		resultado += arrayLinhas[i].replace("*","")+"\r";
 	}
 }
-
 
 T = thisComp.layer("FONTE_1").text.sourceText.getStyleAt(0);
 T.setText(resultado)
@@ -121,7 +121,19 @@ T.setText(resultado)
 temp = thisComp.layer("NULL_CONTROLES").effect("fontsize_1")("Slider");
 [temp, temp]
 
+
 //=============================================================================================
+
+//LAYER NOMES A - ANCHOR POINT
+/*
+v = thisProperty.value
+v[1] = thisComp.layer("NOMES A").sourceRectAtTime(0).top
+v
+*/
+
+//LAYER NOMES A - POSITION Y
+thisComp.layer("FONTE_2").text.sourceText.style.leading/2
+
 
 //LAYER NOMES A - SOURCE TEXT
 //Calcula o range de texto a ser lido.
@@ -135,11 +147,8 @@ linhasPorTela = thisComp.layer("NULL_VARIAVEIS").effect("linhasPorTela")("Slider
 
 step=0
 
-
 //Verifica se o deslocamento completou um ciclo
-n = time.toFixed(4)/ciclo.value.toFixed(4)
 n= time/ciclo
-
 
 //Se for múltiplo de um ciclo (número inteiro), troca o texto
 if (Math.abs(n) - Math.abs(n.toFixed(0)) == 0) 
@@ -157,32 +166,31 @@ end = start + linhasPorTela - 1
 
 if(thisComp.layer("NULL_CONTROLES").effect("Exibir_linhas_numeradas").checkbox == 0)
 {
-	x = thisComp.layer("PREENCHER").text.sourceText.split("\r");
+	arrayLinhas = thisComp.layer("PREENCHER").text.sourceText.split("\r");
 }
 else
 {
-	x = thisComp.layer("LINHAS NUMERADAS").text.sourceText.split("\r");
+	arrayLinhas = thisComp.layer("LINHAS NUMERADAS").text.sourceText.split("\r");
 }
 
-if(start+linhasPorTela > x.length)
+if(start+linhasPorTela > arrayLinhas.length)
 {
-	end = x.length - 1;
+	end = arrayLinhas.length - 1;
 }
 
 resultado = "";
 
 for (i = start; i <= end; i++)
 {
-	if (x[i].charAt(0) == "*")
+	if (arrayLinhas[i].charAt(0) == "*")
 	{
 		resultado += "\r";
 	} 
 	else 
 	{
-		resultado += x[i]+"\r";
+		resultado += arrayLinhas[i]+"\r";
 	}
 }
-
 
 T = thisComp.layer("FONTE_2").text.sourceText.getStyleAt(0);
 T.setText(resultado)
@@ -193,6 +201,9 @@ temp = thisComp.layer("NULL_CONTROLES").effect("fontsize_2")("Slider");
 [temp, temp]
 
 //==================================================================================================
+
+//LAYER FUNCOES B - POSITION Y
+thisComp.layer("FONTE_1").text.sourceText.style.leading/2
 
 
 //LAYER FUNCOES B - SOURCE TEXT
@@ -227,32 +238,32 @@ else
 
 if(thisComp.layer("NULL_CONTROLES").effect("Exibir_linhas_numeradas").checkbox == 0)
 {
-	x = thisComp.layer("PREENCHER").text.sourceText.split("\r");
+	arrayLinhas = thisComp.layer("PREENCHER").text.sourceText.split("\r");
 }
 else
 {
-	x = thisComp.layer("LINHAS NUMERADAS").text.sourceText.split("\r");
+	arrayLinhas = thisComp.layer("LINHAS NUMERADAS").text.sourceText.split("\r");
 }
 
 start = step*linhasPorTela;
 end = start + linhasPorTela - 1
 
-if(start+linhasPorTela > x.length)
+if(start+linhasPorTela > arrayLinhas.length)
 {
-	end = x.length - 1;
+	end = arrayLinhas.length - 1;
 }
 
 resultado = "";
 
 for (i = start; i <= end; i++)
 {
-	if (x[i].charAt(0) != "*")
+	if (arrayLinhas[i].charAt(0) != "*")
 	{
 		resultado += "\r";
 	} 
 	else 
 	{
-		resultado += x[i].replace("*","")+"\r";
+		resultado += arrayLinhas[i].replace("*","")+"\r";
 	}
 }
 
@@ -265,6 +276,15 @@ temp = thisComp.layer("NULL_CONTROLES").effect("fontsize_1")("Slider");
 [temp, temp]
 //==========================================================================================
 
+//LAYER NOMES B - ANCHOR POINT
+/*
+v = thisProperty.value
+v[1] = thisComp.layer("NOMES A").sourceRectAtTime(0).top
+v
+*/
+
+//LAYER NOMES B - POSITION Y
+thisComp.layer("FONTE_2").text.sourceText.style.leading
 
 //LAYER NOMES B - SOURCE TEXT
 ciclo = thisComp.layer("NULL_VARIAVEIS").effect("ciclo")("Slider")
@@ -286,7 +306,6 @@ else
 }
 
 
-
 //Se for múltiplo de um ciclo (número inteiro), troca o texto
 if (Math.abs(n) - Math.abs(n.toFixed(0)) == 0) 
 {  
@@ -299,32 +318,32 @@ else
 
 if(thisComp.layer("NULL_CONTROLES").effect("Exibir_linhas_numeradas").checkbox == 0)
 {
-	x = thisComp.layer("PREENCHER").text.sourceText.split("\r");
+	arrayLinhas = thisComp.layer("PREENCHER").text.sourceText.split("\r");
 }
 else
 {
-	x = thisComp.layer("LINHAS NUMERADAS").text.sourceText.split("\r");
+	arrayLinhas = thisComp.layer("LINHAS NUMERADAS").text.sourceText.split("\r");
 }
 
 start = step*linhasPorTela;
 end = start + linhasPorTela - 1
 
-if(start+linhasPorTela > x.length)
+if(start+linhasPorTela > arrayLinhas.length)
 {
-	end = x.length - 1;
+	end = arrayLinhas.length - 1;
 }
 
 resultado = "";
 
 for (i = start; i <= end; i++)
 {
-	if (x[i].charAt(0) == "*")
+	if (arrayLinhas[i].charAt(0) == "*")
 	{
 		resultado += "\r";
 	} 
 	else 
 	{
-		resultado += x[i]+"\r";
+		resultado += arrayLinhas[i]+"\r";
 	}
 }
 
@@ -335,6 +354,7 @@ T.setText(resultado)
 //LAYER NOMES B - TEXT SCALE
 temp = thisComp.layer("NULL_CONTROLES").effect("fontsize_2")("Slider");
 [temp, temp]
+
 
 //===================================
 
@@ -372,7 +392,6 @@ resultado
 //TOTAL_LINHAS
 thisComp.layer("PREENCHER").text.sourceText.split("\r").length
 
-
 //LINHAS POR TELA
 h_linha1 = thisComp.layer("FONTE_1").text.sourceText.style.leading
 h_linha2 = thisComp.layer("FONTE_2").text.sourceText.style.leading
@@ -385,7 +404,6 @@ Math.ceil(effect("total_linhas")("Slider")/effect("linhasPorTela")("Slider"))
 
 
 //CICLO
-
 //Usa a duracao da comp
 //É preciso descontar 1 frame da duração porque thisComp.duration marca o ínicio do último frame (e não o fim)
 ciclo = ((thisComp.duration - thisComp.frameDuration)*2)/(effect("telas")("Slider") + 1)
