@@ -1,7 +1,11 @@
 //EXPRESSÕES PROJETO ROLL CRÉDITOS
-//NESTA VERSÃO O PARÂMETRO-BASE É A DURAÇÃO DA COMP. O CICLO É CALCULADO A PARTIR DELA.
-//NAS VERSÕES ANTERIORES O PARÂMETRO-BASE ERA O CLICO.
+/*
+NESTA VERSÃO O PARÂMETRO-BASE É A DURAÇÃO DA COMP. O CICLO É CALCULADO A PARTIR DELA.
+NAS VERSÕES ANTERIORES O PARÂMETRO-BASE ERA O CLICO.
 
+O NÚMERO DE LINHAS POR TELA É CALCULADO A PARTIR DO TAMANHO DA MAIOR FONTE USADA
+
+*/
 
 
 //== LAYER NULL SCROLL A ========
@@ -20,7 +24,7 @@ p[posTela-1]
 //== POSICAO Y -- LAYER NULL SCROLL A ========
 
 h = thisComp.height
-ciclo = thisComp.layer("NULL_CONTROLES").effect("ciclo")("Slider")  //em segundos
+ciclo = thisComp.layer("NULL_VARIAVEIS").effect("ciclo")("Slider")  //em segundos
 t1 = Math.floor(time/ciclo)*ciclo
 t2 = t1 + ciclo
 
@@ -37,7 +41,7 @@ thisComp.layer("NULL_SCROLL_A").transform.position[0]
 //== POSICAO Y LAYER NULL ==
 
 h = thisComp.height
-ciclo = thisComp.layer("NULL_CONTROLES").effect("ciclo")("Slider")  //em segundos
+ciclo = thisComp.layer("NULL_VARIAVEIS").effect("ciclo")("Slider")  //em segundos
 t1 = Math.floor((time-ciclo/2)/ciclo)*ciclo + ciclo/2
 t2 = t1 + ciclo
 
@@ -46,7 +50,6 @@ if(time >ciclo/2)
 	linear(time, t1, t2, h, -h)
 }
 else h
-
 
 //==========================================
 
@@ -59,7 +62,7 @@ else h
 
 ciclo = thisComp.layer("NULL_VARIAVEIS").effect("ciclo")("Slider")
 telas = thisComp.layer("NULL_VARIAVEIS").effect("telas")("Slider")
-linhasPorTela = thisComp.layer("NULL_CONTROLES").effect("linhasPorTela")("Slider")
+linhasPorTela = thisComp.layer("NULL_VARIAVEIS").effect("linhasPorTela")("Slider")
 
 step=0
 
@@ -113,6 +116,11 @@ for (i = start; i <= end; i++)
 T = thisComp.layer("FONTE_1").text.sourceText.getStyleAt(0);
 T.setText(resultado)
 
+
+//LAYER FUNCOES A - TEXT SCALE
+temp = thisComp.layer("NULL_CONTROLES").effect("fontsize_1")("Slider");
+[temp, temp]
+
 //=============================================================================================
 
 //LAYER NOMES A - SOURCE TEXT
@@ -123,7 +131,7 @@ T.setText(resultado)
 
 ciclo = thisComp.layer("NULL_VARIAVEIS").effect("ciclo")("Slider")
 telas = thisComp.layer("NULL_VARIAVEIS").effect("telas")("Slider")
-linhasPorTela = thisComp.layer("NULL_CONTROLES").effect("linhasPorTela")("Slider")
+linhasPorTela = thisComp.layer("NULL_VARIAVEIS").effect("linhasPorTela")("Slider")
 
 step=0
 
@@ -179,13 +187,18 @@ for (i = start; i <= end; i++)
 T = thisComp.layer("FONTE_2").text.sourceText.getStyleAt(0);
 T.setText(resultado)
 
+
+//LAYER NOMES A - TEXT SCALE
+temp = thisComp.layer("NULL_CONTROLES").effect("fontsize_2")("Slider");
+[temp, temp]
+
 //==================================================================================================
 
 
 //LAYER FUNCOES B - SOURCE TEXT
 ciclo = thisComp.layer("NULL_VARIAVEIS").effect("ciclo")("Slider")
 telas = thisComp.layer("NULL_VARIAVEIS").effect("telas")("Slider")
-linhasPorTela = thisComp.layer("NULL_CONTROLES").effect("linhasPorTela")("Slider")
+linhasPorTela = thisComp.layer("NULL_VARIAVEIS").effect("linhasPorTela")("Slider")
 
 step=0
 start_t= ciclo/2;
@@ -247,13 +260,16 @@ T = thisComp.layer("FONTE_1").text.sourceText.getStyleAt(0);
 T.setText(resultado)
 
 
+//LAYER FUNCOES B - TEXT SCALE
+temp = thisComp.layer("NULL_CONTROLES").effect("fontsize_1")("Slider");
+[temp, temp]
 //==========================================================================================
 
 
 //LAYER NOMES B - SOURCE TEXT
 ciclo = thisComp.layer("NULL_VARIAVEIS").effect("ciclo")("Slider")
 telas = thisComp.layer("NULL_VARIAVEIS").effect("telas")("Slider")
-linhasPorTela = thisComp.layer("NULL_CONTROLES").effect("linhasPorTela")("Slider")
+linhasPorTela = thisComp.layer("NULL_VARIAVEIS").effect("linhasPorTela")("Slider")
 
 step=0
 start_t= ciclo/2;
@@ -268,6 +284,7 @@ else
 {
 	n = time/ciclo
 }
+
 
 
 //Se for múltiplo de um ciclo (número inteiro), troca o texto
@@ -315,6 +332,20 @@ T = thisComp.layer("FONTE_2").text.sourceText.getStyleAt(0);
 T.setText(resultado)
 
 
+//LAYER NOMES B - TEXT SCALE
+temp = thisComp.layer("NULL_CONTROLES").effect("fontsize_2")("Slider");
+[temp, temp]
+
+//===================================
+
+//== LAYERS FONTE_1 e FONTE_2 - SOURCE TEXT ========
+
+l1 = thisComp.layer("NULL_CONTROLES").effect("fontsize_1")("Slider");
+l2 = thisComp.layer("NULL_CONTROLES").effect("fontsize_2")("Slider");
+l = Math.max(l1,l2);
+e = thisComp.layer("NULL_CONTROLES").effect("entrelinha_ajuste")("Slider");
+text.sourceText.style.setText(value).setFontSize(100).setLeading(l+e)
+
 //===================================
 
 //== LAYER LINHAS NUMERADAS - SOURCE TEXT ========
@@ -339,15 +370,21 @@ resultado
 //===================================
 
 
-
 //LAYER NULL_VARIAVEIS
 
 //TOTAL_LINHAS
 thisComp.layer("PREENCHER").text.sourceText.split("\r").length
 
 
+//LINHAS POR TELA
+h_linha1 = thisComp.layer("FONTE_1").text.sourceText.style.leading
+h_linha2 = thisComp.layer("FONTE_2").text.sourceText.style.leading
+h_linha = Math.max(h_linha1,h_linha2)
+Math.floor(thisComp.height/h_linha)
+
+
 //TELAS
-Math.ceil(effect("total_linhas")("Slider")/thisComp.layer("NULL_CONTROLES").effect("linhasPorTela")("Slider"))
+Math.ceil(effect("total_linhas")("Slider")/effect("linhasPorTela")("Slider"))
 
 
 //CICLO
@@ -355,4 +392,7 @@ Math.ceil(effect("total_linhas")("Slider")/thisComp.layer("NULL_CONTROLES").effe
 //Usa a duracao da comp
 //É preciso descontar 1 frame da duração porque thisComp.duration marca o ínicio do último frame (e não o fim)
 ciclo = ((thisComp.duration - thisComp.frameDuration)*2)/(effect("telas")("Slider") + 1)
+
+//Teste % inicio e fim
+
 
