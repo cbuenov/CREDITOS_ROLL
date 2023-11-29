@@ -365,10 +365,7 @@ for (i = 1; i <= x.length; i++)
 }
 resultado
 
-
-
 //===================================
-
 
 //LAYER NULL_VARIAVEIS
 
@@ -392,7 +389,3 @@ Math.ceil(effect("total_linhas")("Slider")/effect("linhasPorTela")("Slider"))
 //Usa a duracao da comp
 //É preciso descontar 1 frame da duração porque thisComp.duration marca o ínicio do último frame (e não o fim)
 ciclo = ((thisComp.duration - thisComp.frameDuration)*2)/(effect("telas")("Slider") + 1)
-
-//Teste % inicio e fim
-
-
