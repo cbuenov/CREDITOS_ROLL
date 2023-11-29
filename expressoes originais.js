@@ -1,4 +1,29 @@
 
+//NULL CONTROLES =================================================
+
+//POSICAO X
+m = effect("posicaoNaTela")("Menu");
+w = Math.max(thisComp.layer("FUNCOES").sourceRectAtTime(5).width, thisComp.layer("NOMES").sourceRectAtTime(5).width);
+me = w/2 + effect("margem")("Slider");
+md = (width - w/2) - effect("margem")("Slider");
+p = [me, md];
+p[m-1]
+
+//POSICAO y
+h1 = thisComp.layer("FUNCOES").sourceRectAtTime(0).height;
+h2 = thisComp.layer("NOMES").sourceRectAtTime(0).height;
+h = Math.max(h1,h2)+content("Group 1").content("Rectangle Path 1").size[1];
+
+a1 = 100-effect("ajuste_animacao_inicio(%)")("Slider");
+a2 = effect("ajuste_animacao_fim(%)")("Slider");
+p0 = thisComp.height*a1/100;
+p1 = h*a2/100;
+t1 = 0;
+t2 = thisComp.duration;
+
+linear(time, 0, t2, p0, -p1)
+
+
 
 //LAYER FUNCOES =================================================
 
@@ -29,6 +54,9 @@ T = thisComp.layer("FONTE_1").text.sourceText.getStyleAt(0);
 T.setText(resultado)
 
 
+//TEXT SCALE
+temp = thisComp.layer("NULL_CONTROLES").effect("fontsize_1")("Slider");
+[temp, temp]
 
 //LAYER NOMES ================================================
 
@@ -50,3 +78,7 @@ for (i = 0; i <= x.length-1; i++) {
 };
 T = thisComp.layer("FONTE_2").text.sourceText.getStyleAt(0);
 T.setText(resultado)
+
+//TEXT SCALE
+temp = thisComp.layer("NULL_CONTROLES").effect("fontsize_2")("Slider");
+[temp, temp]
