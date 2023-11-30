@@ -85,8 +85,7 @@ else //número fracionário (não troca ainda)
 start = step*linhasPorTela;
 end = start + linhasPorTela - 1
 
-//xxxxxxxxxxx
-arrayLinhas = ["\r"]
+arrayLinhas = ["blankLine"]
 
 if(thisComp.layer("NULL_CONTROLES").effect("Exibir_linhas_numeradas").checkbox == 0)
 {
@@ -97,7 +96,6 @@ else
 	arrayLinhas = arrayLinhas.concat(thisComp.layer("LINHAS NUMERADAS").text.sourceText.split("\r"));
 }
 
-//xxxxxxxxxxxxxxxxxxxxxxxx
 
 if(start+linhasPorTela > arrayLinhas.length)
 {
@@ -108,7 +106,7 @@ resultado = "";
 
 for (i = start; i <= end; i++)
 {
-	if (arrayLinhas[i].charAt(0) != "*")
+	if (arrayLinhas[i].charAt(0) != "*" || arrayLinhas[i] == "blankLine")
 	{
 		resultado += "\r";
 	} 
@@ -170,7 +168,8 @@ start = step*linhasPorTela;
 end = start + linhasPorTela - 1
 
 //xxxxxxxxxxx
-arrayLinhas = ["\r"]
+//Adiciono uma linha em brancho para não correr o risco da parte superior do texto da 1a linha vazar no primeiro frame
+arrayLinhas = ["blankLine"]
 
 if(thisComp.layer("NULL_CONTROLES").effect("Exibir_linhas_numeradas").checkbox == 0)
 {
@@ -192,7 +191,7 @@ resultado = "";
 
 for (i = start; i <= end; i++)
 {
-	if (arrayLinhas[i].charAt(0) == "*")
+	if (arrayLinhas[i].charAt(0) == "*" || arrayLinhas[i] == "blankLine")
 	{
 		resultado += "\r";
 	} 
@@ -247,7 +246,7 @@ else
 }
 
 //xxxxxxxxxxx
-arrayLinhas = ["\r"]
+arrayLinhas = ["blankLine"]
 
 if(thisComp.layer("NULL_CONTROLES").effect("Exibir_linhas_numeradas").checkbox == 0)
 {
@@ -272,7 +271,7 @@ resultado = "";
 
 for (i = start; i <= end; i++)
 {
-	if (arrayLinhas[i].charAt(0) != "*")
+	if (arrayLinhas[i].charAt(0) == "*" || arrayLinhas[i] == "blankLine")
 	{
 		resultado += "\r";
 	} 
@@ -332,7 +331,7 @@ else
 }
 
 //xxxxxxxxxxx
-arrayLinhas = ["\r"]
+arrayLinhas = ["blankLine"]
 
 if(thisComp.layer("NULL_CONTROLES").effect("Exibir_linhas_numeradas").checkbox == 0)
 {
@@ -357,7 +356,7 @@ resultado = "";
 
 for (i = start; i <= end; i++)
 {
-	if (arrayLinhas[i].charAt(0) == "*")
+	if (arrayLinhas[i].charAt(0) == "*" || arrayLinhas[i] == "blankLine")
 	{
 		resultado += "\r";
 	} 
