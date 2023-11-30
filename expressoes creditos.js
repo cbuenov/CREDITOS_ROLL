@@ -7,9 +7,9 @@ O NÚMERO DE LINHAS POR TELA É CALCULADO A PARTIR DO TAMANHO DA MAIOR FONTE USA
 */
 
 
-//== LAYER NULL SCROLL A ========
+//== LAYER NULL SCROLL A ====================================
 
-//== POSICAO X == 
+//-- LAYER NULL SCROLL A: POSICAO X -- 
 
 posTela = thisComp.layer("NULL_CONTROLES").effect("posicaoNaTela")("Menu");
 larguraMax = Math.max(thisComp.layer("FUNCOES A").sourceRectAtTime(5).width, thisComp.layer("NOMES A").sourceRectAtTime(5).width);
@@ -20,7 +20,7 @@ p = [me, md];
 p[posTela-1]
 
 
-//== POSICAO Y -- LAYER NULL SCROLL A ========
+//-- LAYER NULL SCROLL A: POSICAO Y -- 
 
 h = thisComp.height
 ciclo = thisComp.layer("NULL_VARIAVEIS").effect("ciclo")("Slider")  //em segundos
@@ -29,15 +29,15 @@ t2 = t1 + ciclo
 
 linear(time, t1, t2, h, -h)
 
-//===========================================================================================
 
-//== LAYER NULL SCROLL B ========
 
-//== POSICAO X ==
+//== LAYER NULL SCROLL B ==================================================
+
+//-- LAYER NULL SCROLL B: POSICAO X --
 thisComp.layer("NULL_SCROLL_A").transform.position[0]
 
 
-//== POSICAO Y LAYER NULL ==
+//-- LAYER NULL SCROLL B: POSICAO Y  --
 
 h = thisComp.height
 ciclo = thisComp.layer("NULL_VARIAVEIS").effect("ciclo")("Slider")  //em segundos
@@ -50,12 +50,13 @@ if(time >ciclo/2)
 }
 else h
 
-//==========================================
+//== LAYER FUNCOES A =======================================
 
-//LAYER FUNCOES A - POSITION Y
-thisComp.layer("FONTE_1").text.sourceText.style.leading/2
+//-- LAYER FUNCOES A: POSITION Y
+thisComp.layer("FONTE_1").text.sourceText.style.leading
 
-//LAYER FUNCOES A - SOURCE TEXT
+
+//-- LAYER FUNCOES A: SOURCE TEXT
 //Calcula o range de texto a ser lido.
 //Um ciclo é o tempo de entrar em quadro mais o tempo de sair de quadro.
 //O texto terá que ser trocado assim que a layer sair de quadro.
@@ -85,17 +86,15 @@ else //número fracionário (não troca ainda)
 start = step*linhasPorTela;
 end = start + linhasPorTela - 1
 
-arrayLinhas = ["blankLine"]
 
 if(thisComp.layer("NULL_CONTROLES").effect("Exibir_linhas_numeradas").checkbox == 0)
 {
-	arrayLinhas = arrayLinhas.concat(thisComp.layer("PREENCHER").text.sourceText.split("\r"));
+	arrayLinhas = thisComp.layer("PREENCHER").text.sourceText.split("\r");
 }
 else
 {
-	arrayLinhas = arrayLinhas.concat(thisComp.layer("LINHAS NUMERADAS").text.sourceText.split("\r"));
+	arrayLinhas = thisComp.layer("LINHAS NUMERADAS").text.sourceText.split("\r");
 }
-
 
 if(start+linhasPorTela > arrayLinhas.length)
 {
@@ -106,7 +105,7 @@ resultado = "";
 
 for (i = start; i <= end; i++)
 {
-	if (arrayLinhas[i].charAt(0) != "*" || arrayLinhas[i] == "blankLine")
+	if (arrayLinhas[i].charAt(0) != "*")
 	{
 		resultado += "\r";
 	} 
@@ -120,30 +119,19 @@ T = thisComp.layer("FONTE_1").text.sourceText.getStyleAt(0);
 T.setText(resultado)
 
 
-//LAYER FUNCOES A - TEXT SCALE
+
+//-- LAYER FUNCOES A: TEXT SCALE
 temp = thisComp.layer("NULL_CONTROLES").effect("fontsize_1")("Slider");
 [temp, temp]
 
 
-//=============================================================================================
+//== LAYER NOMES A ==============================================================
 
-//LAYER NOMES A - ANCHOR POINT
-/*
-v = thisProperty.value
-v[1] = thisComp.layer("NOMES A").sourceRectAtTime(0).top
-v
-*/
-
-//LAYER NOMES A - POSITION Y
-thisComp.layer("FONTE_2").text.sourceText.style.leading/2
+//-- LAYER NOMES A - POSITION Y
+thisComp.layer("FONTE_2").text.sourceText.style.leading
 
 
-//LAYER NOMES A - SOURCE TEXT
-//Calcula o range de texto a ser lido.
-//Um ciclo é o tempo de entrar em quadro mais o tempo de sair de quadro.
-//O texto terá que ser trocado assim que a layer sair de quadro.
-//START define o ponto inicial do trecho de texto a ser usado.
-
+//-- LAYER NOMES A - SOURCE TEXT
 ciclo = thisComp.layer("NULL_VARIAVEIS").effect("ciclo")("Slider")
 telas = thisComp.layer("NULL_VARIAVEIS").effect("telas")("Slider")
 linhasPorTela = thisComp.layer("NULL_VARIAVEIS").effect("linhasPorTela")("Slider")
@@ -167,20 +155,16 @@ else //número fracionário (não troca ainda)
 start = step*linhasPorTela;
 end = start + linhasPorTela - 1
 
-//xxxxxxxxxxx
-//Adiciono uma linha em brancho para não correr o risco da parte superior do texto da 1a linha vazar no primeiro frame
-arrayLinhas = ["blankLine"]
 
 if(thisComp.layer("NULL_CONTROLES").effect("Exibir_linhas_numeradas").checkbox == 0)
 {
-	arrayLinhas = arrayLinhas.concat(thisComp.layer("PREENCHER").text.sourceText.split("\r"));
+	arrayLinhas = thisComp.layer("PREENCHER").text.sourceText.split("\r");
 }
 else
 {
-	arrayLinhas = arrayLinhas.concat(thisComp.layer("LINHAS NUMERADAS").text.sourceText.split("\r"));
+	arrayLinhas = thisComp.layer("LINHAS NUMERADAS").text.sourceText.split("\r");
 }
 
-//xxxxxxxxxxxxxxxxxxxxxxxx
 
 if(start+linhasPorTela > arrayLinhas.length)
 {
@@ -191,7 +175,7 @@ resultado = "";
 
 for (i = start; i <= end; i++)
 {
-	if (arrayLinhas[i].charAt(0) == "*" || arrayLinhas[i] == "blankLine")
+	if (arrayLinhas[i].charAt(0) == "*")
 	{
 		resultado += "\r";
 	} 
@@ -205,17 +189,19 @@ T = thisComp.layer("FONTE_2").text.sourceText.getStyleAt(0);
 T.setText(resultado)
 
 
-//LAYER NOMES A - TEXT SCALE
+//-- LAYER NOMES A: TEXT SCALE
 temp = thisComp.layer("NULL_CONTROLES").effect("fontsize_2")("Slider");
 [temp, temp]
 
-//==================================================================================================
-
-//LAYER FUNCOES B - POSITION Y
-thisComp.layer("FONTE_1").text.sourceText.style.leading/2
 
 
-//LAYER FUNCOES B - SOURCE TEXT
+//== LAYER FUNCOES B ==============================================================
+
+//-- LAYER FUNCOES B: POSITION Y
+thisComp.layer("FONTE_1").text.sourceText.style.leading
+
+
+//-- LAYER FUNCOES B: SOURCE TEXT
 ciclo = thisComp.layer("NULL_VARIAVEIS").effect("ciclo")("Slider")
 telas = thisComp.layer("NULL_VARIAVEIS").effect("telas")("Slider")
 linhasPorTela = thisComp.layer("NULL_VARIAVEIS").effect("linhasPorTela")("Slider")
@@ -245,19 +231,14 @@ else
 	step = Math.floor(n)*2 + 1
 }
 
-//xxxxxxxxxxx
-arrayLinhas = ["blankLine"]
-
 if(thisComp.layer("NULL_CONTROLES").effect("Exibir_linhas_numeradas").checkbox == 0)
 {
-	arrayLinhas = arrayLinhas.concat(thisComp.layer("PREENCHER").text.sourceText.split("\r"));
+	arrayLinhas = thisComp.layer("PREENCHER").text.sourceText.split("\r");
 }
 else
 {
-	arrayLinhas = arrayLinhas.concat(thisComp.layer("LINHAS NUMERADAS").text.sourceText.split("\r"));
+	arrayLinhas = thisComp.layer("LINHAS NUMERADAS").text.sourceText.split("\r");
 }
-
-//xxxxxxxxxxxxxxxxxxxxxxxx
 
 start = step*linhasPorTela;
 end = start + linhasPorTela - 1
@@ -271,7 +252,7 @@ resultado = "";
 
 for (i = start; i <= end; i++)
 {
-	if (arrayLinhas[i].charAt(0) == "*" || arrayLinhas[i] == "blankLine")
+	if (arrayLinhas[i].charAt(0) != "*")
 	{
 		resultado += "\r";
 	} 
@@ -288,19 +269,15 @@ T.setText(resultado)
 //LAYER FUNCOES B - TEXT SCALE
 temp = thisComp.layer("NULL_CONTROLES").effect("fontsize_1")("Slider");
 [temp, temp]
-//==========================================================================================
 
-//LAYER NOMES B - ANCHOR POINT
-/*
-v = thisProperty.value
-v[1] = thisComp.layer("NOMES A").sourceRectAtTime(0).top
-v
-*/
 
-//LAYER NOMES B - POSITION Y
+//== LAYER NOMES B ==============================================================
+
+//-- LAYER NOMES B: POSITION Y
 thisComp.layer("FONTE_2").text.sourceText.style.leading
 
-//LAYER NOMES B - SOURCE TEXT
+
+//- LAYER NOMES B: SOURCE TEXT
 ciclo = thisComp.layer("NULL_VARIAVEIS").effect("ciclo")("Slider")
 telas = thisComp.layer("NULL_VARIAVEIS").effect("telas")("Slider")
 linhasPorTela = thisComp.layer("NULL_VARIAVEIS").effect("linhasPorTela")("Slider")
@@ -330,19 +307,14 @@ else
 	step = Math.floor(n)*2 + 1
 }
 
-//xxxxxxxxxxx
-arrayLinhas = ["blankLine"]
-
 if(thisComp.layer("NULL_CONTROLES").effect("Exibir_linhas_numeradas").checkbox == 0)
 {
-	arrayLinhas = arrayLinhas.concat(thisComp.layer("PREENCHER").text.sourceText.split("\r"));
+	arrayLinhas = thisComp.layer("PREENCHER").text.sourceText.split("\r");
 }
 else
 {
-	arrayLinhas = arrayLinhas.concat(thisComp.layer("LINHAS NUMERADAS").text.sourceText.split("\r"));
+	arrayLinhas = thisComp.layer("LINHAS NUMERADAS").text.sourceText.split("\r");
 }
-
-//xxxxxxxxxxxxxxxxxxxxxxxx
 
 start = step*linhasPorTela;
 end = start + linhasPorTela - 1
@@ -356,7 +328,7 @@ resultado = "";
 
 for (i = start; i <= end; i++)
 {
-	if (arrayLinhas[i].charAt(0) == "*" || arrayLinhas[i] == "blankLine")
+	if (arrayLinhas[i].charAt(0) == "*")
 	{
 		resultado += "\r";
 	} 
@@ -370,14 +342,14 @@ T = thisComp.layer("FONTE_2").text.sourceText.getStyleAt(0);
 T.setText(resultado)
 
 
-//LAYER NOMES B - TEXT SCALE
+
+//-- LAYER NOMES B: TEXT SCALE
 temp = thisComp.layer("NULL_CONTROLES").effect("fontsize_2")("Slider");
 [temp, temp]
 
 
-//===================================
 
-//== LAYERS FONTE_1 e FONTE_2 - SOURCE TEXT ========
+//== LAYERS FONTE_1 e FONTE_2 - SOURCE TEXT ===============================
 
 l1 = thisComp.layer("NULL_CONTROLES").effect("fontsize_1")("Slider");
 l2 = thisComp.layer("NULL_CONTROLES").effect("fontsize_2")("Slider");
@@ -385,10 +357,9 @@ l = Math.max(l1,l2);
 e = thisComp.layer("NULL_CONTROLES").effect("entrelinha_ajuste")("Slider");
 text.sourceText.style.setText(value).setFontSize(100).setLeading(l+e)
 
-//===================================
 
-//== LAYER LINHAS NUMERADAS - SOURCE TEXT ========
 
+//== LAYER LINHAS NUMERADAS - SOURCE TEXT ==================================
 x = thisComp.layer("PREENCHER").text.sourceText.split("\r");
 resultado = "";
 for (i = 1; i <= x.length; i++) 
@@ -404,9 +375,34 @@ for (i = 1; i <= x.length; i++)
 }
 resultado
 
-//===================================
 
-//LAYER NULL_VARIAVEIS
+//== LAYER FRAME_REFERENCIA_A ==========================================
+//Ajusta a largura deste retângulo de auxílio visual
+w1 = thisComp.layer("NOMES A").sourceRectAtTime().width
+w2 = thisComp.layer("FUNCOES A").sourceRectAtTime().width
+w = Math.max(w1,w2)
+
+if(w <100)
+{
+	w = 100
+}
+[w, thisComp.height]
+
+
+//== LAYER FRAME_REFERENCIA_B ==========================================
+w1 = thisComp.layer("NOMES B").sourceRectAtTime().width
+w2 = thisComp.layer("FUNCOES B").sourceRectAtTime().width
+w = Math.max(w1,w2)
+
+if(w <100)
+{
+	w = 100
+}
+[w, thisComp.height]
+
+
+//== LAYER NULL_VARIAVEIS: EFFECTS ==========================================================
+//O propósito desta layer é conter as variáveis que são usadas no projeto de forma que não sejam calculadas a cada frame.
 
 //TOTAL_LINHAS
 thisComp.layer("PREENCHER").text.sourceText.split("\r").length
@@ -417,10 +413,8 @@ h_linha2 = thisComp.layer("FONTE_2").text.sourceText.style.leading
 h_linha = Math.max(h_linha1,h_linha2)
 Math.floor(thisComp.height/h_linha)
 
-
 //TELAS
 Math.ceil(effect("total_linhas")("Slider")/effect("linhasPorTela")("Slider"))
-
 
 //CICLO
 //Usa a duracao da comp
