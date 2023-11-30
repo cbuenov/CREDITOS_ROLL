@@ -85,14 +85,19 @@ else //número fracionário (não troca ainda)
 start = step*linhasPorTela;
 end = start + linhasPorTela - 1
 
+//xxxxxxxxxxx
+arrayLinhas = ["\r"]
+
 if(thisComp.layer("NULL_CONTROLES").effect("Exibir_linhas_numeradas").checkbox == 0)
 {
-	arrayLinhas = thisComp.layer("PREENCHER").text.sourceText.split("\r");
+	arrayLinhas = arrayLinhas.concat(thisComp.layer("PREENCHER").text.sourceText.split("\r"));
 }
 else
 {
-	arrayLinhas = thisComp.layer("LINHAS NUMERADAS").text.sourceText.split("\r");
+	arrayLinhas = arrayLinhas.concat(thisComp.layer("LINHAS NUMERADAS").text.sourceText.split("\r"));
 }
+
+//xxxxxxxxxxxxxxxxxxxxxxxx
 
 if(start+linhasPorTela > arrayLinhas.length)
 {
@@ -164,14 +169,19 @@ else //número fracionário (não troca ainda)
 start = step*linhasPorTela;
 end = start + linhasPorTela - 1
 
+//xxxxxxxxxxx
+arrayLinhas = ["\r"]
+
 if(thisComp.layer("NULL_CONTROLES").effect("Exibir_linhas_numeradas").checkbox == 0)
 {
-	arrayLinhas = thisComp.layer("PREENCHER").text.sourceText.split("\r");
+	arrayLinhas = arrayLinhas.concat(thisComp.layer("PREENCHER").text.sourceText.split("\r"));
 }
 else
 {
-	arrayLinhas = thisComp.layer("LINHAS NUMERADAS").text.sourceText.split("\r");
+	arrayLinhas = arrayLinhas.concat(thisComp.layer("LINHAS NUMERADAS").text.sourceText.split("\r"));
 }
+
+//xxxxxxxxxxxxxxxxxxxxxxxx
 
 if(start+linhasPorTela > arrayLinhas.length)
 {
@@ -236,14 +246,19 @@ else
 	step = Math.floor(n)*2 + 1
 }
 
+//xxxxxxxxxxx
+arrayLinhas = ["\r"]
+
 if(thisComp.layer("NULL_CONTROLES").effect("Exibir_linhas_numeradas").checkbox == 0)
 {
-	arrayLinhas = thisComp.layer("PREENCHER").text.sourceText.split("\r");
+	arrayLinhas = arrayLinhas.concat(thisComp.layer("PREENCHER").text.sourceText.split("\r"));
 }
 else
 {
-	arrayLinhas = thisComp.layer("LINHAS NUMERADAS").text.sourceText.split("\r");
+	arrayLinhas = arrayLinhas.concat(thisComp.layer("LINHAS NUMERADAS").text.sourceText.split("\r"));
 }
+
+//xxxxxxxxxxxxxxxxxxxxxxxx
 
 start = step*linhasPorTela;
 end = start + linhasPorTela - 1
@@ -316,14 +331,19 @@ else
 	step = Math.floor(n)*2 + 1
 }
 
+//xxxxxxxxxxx
+arrayLinhas = ["\r"]
+
 if(thisComp.layer("NULL_CONTROLES").effect("Exibir_linhas_numeradas").checkbox == 0)
 {
-	arrayLinhas = thisComp.layer("PREENCHER").text.sourceText.split("\r");
+	arrayLinhas = arrayLinhas.concat(thisComp.layer("PREENCHER").text.sourceText.split("\r"));
 }
 else
 {
-	arrayLinhas = thisComp.layer("LINHAS NUMERADAS").text.sourceText.split("\r");
+	arrayLinhas = arrayLinhas.concat(thisComp.layer("LINHAS NUMERADAS").text.sourceText.split("\r"));
 }
+
+//xxxxxxxxxxxxxxxxxxxxxxxx
 
 start = step*linhasPorTela;
 end = start + linhasPorTela - 1
