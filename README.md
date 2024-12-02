@@ -7,3 +7,5 @@ Versão 1.1:
 Não é possível ajustar os pontos de entrada e de saída da animação.
 
 Não permite o alinhamento do texto à direita ou à esquerda.
+
+xxx
